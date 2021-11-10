@@ -17,7 +17,7 @@ const HomeItems = props => {
   const [favoriteName, setFavoriteName] = useState('heart-outline');
   const [favoriteHighlight, setFavoriteHighlight] = useState('black');
   const [toCartBtn, setToCartBtn] = useState('To Cart');
-  const formatPrice = props.price.toLocaleString()
+  const formatPrice = props.price.toLocaleString();
 
   useEffect(() => {
     props.favorite
@@ -53,7 +53,9 @@ const HomeItems = props => {
             style={[styles.actions]}>
             <Text>{favoriteIcon}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => props.navigation.navigate("Build")} style={[styles.actions]}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Build')}
+            style={[styles.actions]}>
             <Text>{editIcon}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.actions]}>
@@ -88,10 +90,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(230,230,250)',
     borderRadius: 30,
     borderWidth: 3,
-    borderColor: 'white',
+    borderColor: 'rgb(230,230,250)',
     margin: 10,
     shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 3,
+    shadowRadius: 12.35,
+    elevation: 30,
   },
   title: {
     fontSize: 25,

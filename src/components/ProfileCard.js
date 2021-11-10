@@ -15,7 +15,7 @@ import {useSelector} from 'react-redux';
 
 const profileCard = props => {
   const balance = useSelector(state => state.user.balance);
-  const formatBalance = balance.toLocaleString()
+  const formatBalance = balance.toLocaleString();
   const {height} = Dimensions.get('screen');
   const cardHeight = height * props.height;
   const history = useSelector(state => state.user.history);
@@ -53,8 +53,10 @@ const profileCard = props => {
             <Text style={styles.balanceTitle}>{props.title}</Text>
             <Text style={styles.balanceFigure}>₦{formatBalance}</Text>
           </View>
-          <TouchableOpacity onPress={() => auth.signOut()} style={{width: '80%', marginLeft: "37%", }}>
-            <ProfileButtons marginTop="3%"  title="FUND" width="40%" />
+          <TouchableOpacity
+            onPress={() => auth.signOut()}
+            style={{width: '80%', marginLeft: '37%'}}>
+            <ProfileButtons marginTop="3%" title="FUND" width="40%" />
           </TouchableOpacity>
         </View>
       ) : props.title === 'FAVORITE ORDER' ? (
@@ -80,15 +82,19 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'rgb(230,230,250)',
     width: '95%',
-    //height: cardHeight,
     marginTop: '3%',
     borderRadius: 20,
-    //justifyContent: 'center',
-    //alignItems: 'center',
+    borderColor: 'rgb(230,230,250)',
+    borderWidth: 2,
     shadowColor: 'black',
-    shadowOpacity: 1,
-    shadowRadius: 5,
-    //justifyContent: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+
+    elevation: 30,
   },
   balance: {
     flexDirection: 'row',
