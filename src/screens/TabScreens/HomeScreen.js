@@ -38,12 +38,12 @@ const HomeScreen = ({navigation}) => {
         price={items.smallPrice}
         image={items.image}
         key={i}
+        topping={items.topping}
         addToCart={() => dispatch(addToCartItems({id: items.id}))}
-        addToFavorites ={() => dispatch(addToFavorites({id: items.id}))}
-        removeFromFavorites ={() => dispatch(removeFromFavorites({id: items.id}))}
+        addToFavorites ={() => dispatch(addToFavorites({id: items.topping}))}
+        removeFromFavorites ={() => dispatch(removeFromFavorites({id: items.topping}))}
         favorite={items.favorite}
         id={items.id}
-        cart={items.cart}
         navigation={navigation}
       />
     );

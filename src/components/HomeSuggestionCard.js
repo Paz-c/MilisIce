@@ -38,12 +38,9 @@ const styles = StyleSheet.create({
     margin: '3%',
     borderWidth: 1,
     borderRadius: 50,
-    shadowColor: 'black',
-    //shadowOpacity: 1,
-    shadowRadius: 5,
     paddingLeft: '2%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     margin: '3%',

@@ -39,7 +39,7 @@ const initialState = {
       favorite: false,
       cart: false,
       topping:
-        'Hot Fudge, Sprinkles, Caramel, Oreos, Cookie Dough, Whipped Cream',
+        'Hot Fudge, Sprinkles, Caramel, Oreos',
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ const initialState = {
       favorite: false,
       cart: false,
       topping:
-        'Hot Fudge, Sprinkles, Caramel, Oreos, Cookie Dough, Whipped Cream',
+        ', Sprinkles, Caramel, Oreos, Cookie Dough, Whipped Cream',
     },
     {
       id: 3,
@@ -141,34 +141,18 @@ export const UserSlice = createSlice({
 
     addToCartItems: (state, action) => {
       const id = action.payload.id;
-      const check = state.cartItems.some(e => e.id === id);
-      if (check === true) {
-        state.homeItems.map(item => {
+        state.homeItems.map((item) => {
           if (item.id === id) {
-            return {...item, cart: (item.cart = false)};
+            return state.cartItems.unshift(item)
           }
+          console.log(state.cartItems);
           return item;
         });
-        const newArray = state.cartItems.filter(item => item.id !== id);
-        state.cartItems = newArray;
-        console.log('deleted...');
-        console.log(state.homeItems);
-        console.log(state.cartItems);
-      } else {
-        state.homeItems.map(item => {
+        state.cartItems.map(item => {
           if (item.id === id) {
-            return [
-              state.cartItems.unshift(item),
-              {...item, cart: (item.cart = true)},
-            ];
+            return {...item, id: item.id = Date.now().toString(36) + Math.random().toString(36).substr(2)};
           }
-          return item;
-        });
-      }
-
-      console.log('Added...');
-      console.log(state.homeItems);
-      console.log(state.cartItems);
+        })
     },
 
     removeCartItem: (state, action) => {
@@ -179,10 +163,10 @@ export const UserSlice = createSlice({
 
     addToFavorites: (state, action) => {
       const id = action.payload.id;
-      const check = state.favorites.some(e => e.id === id);
+      const check = state.favorites.some(e => e.topping === id);
       if (check === true) {
         const updateHomeFavorites = state.homeItems.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: false,
@@ -192,7 +176,7 @@ export const UserSlice = createSlice({
         });
         state.homeItems = updateHomeFavorites;
         const updateCartFavorites = state.cartItems.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: false,
@@ -202,7 +186,7 @@ export const UserSlice = createSlice({
         });
         state.cartItems = updateCartFavorites;
         const updateHistoryFavorites = state.history.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: false,
@@ -211,14 +195,14 @@ export const UserSlice = createSlice({
           return item;
         });
         state.history = updateHistoryFavorites;
-        const newArray = state.favorites.filter(item => item.id !== id);
+        const newArray = state.favorites.filter(item => item.topping !== id);
         state.favorites = newArray;
         console.log(state.history);
         console.log(state.favorites);
         console.log('removed....false set');
       } else {
         const updateHomeFavorites = state.homeItems.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: true,
@@ -228,7 +212,7 @@ export const UserSlice = createSlice({
         });
         state.homeItems = updateHomeFavorites;
         const updateCartFavorites = state.cartItems.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: true,
@@ -238,7 +222,7 @@ export const UserSlice = createSlice({
         });
         state.cartItems = updateCartFavorites;
         const updateHistoryFavorites = state.history.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             return {
               ...item,
               favorite: true,
@@ -248,12 +232,12 @@ export const UserSlice = createSlice({
         });
         state.history = updateHistoryFavorites;
         state.homeItems.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             state.favorites.unshift(item);
           }
         });
         state.history.map(item => {
-          if (item.id === id) {
+          if (item.topping === id) {
             state.favorites.unshift(item);
           }
         });
@@ -265,7 +249,7 @@ export const UserSlice = createSlice({
 
     removeFromFavorites: (state, action) => {
       const id = action.payload.id;
-      const newArray = state.favorites.filter(item => item.id !== id);
+      const newArray = state.favorites.filter(item => item.topping !== id);
       state.favorites = newArray;
       console.log(state.favorites);
     },

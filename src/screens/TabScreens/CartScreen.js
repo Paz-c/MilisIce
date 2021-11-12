@@ -36,7 +36,7 @@ function CartView({navigation}) {
         key={i}
         amount={items.amount}
         id={items.id}
-        addToFavorites={() => dispatch(addToFavorites({id: items.id}))}
+        addToFavorites={() => dispatch(addToFavorites({id: items.topping}))}
         favorite={items.favorite}
         topping={items.topping}
         callSetPrice={callChildSetPrice}

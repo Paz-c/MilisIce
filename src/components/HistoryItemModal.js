@@ -41,7 +41,7 @@ const HistoryItemModal = props => {
                 <TouchableOpacity onPress={props.closeModal}>
                   {closeIcon}
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => dispatch(addToFavorites({id: props.id}))}>
+                <TouchableOpacity onPress={() => dispatch(addToFavorites({id: props.topping}))}>
                   {favoriteIcon}
                 </TouchableOpacity>
               </View>

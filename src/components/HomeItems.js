@@ -16,7 +16,6 @@ const HomeItems = props => {
   const checkCartArrayChange = useSelector(state => state.user.cartItems);
   const [favoriteName, setFavoriteName] = useState('heart-outline');
   const [favoriteHighlight, setFavoriteHighlight] = useState('black');
-  const [toCartBtn, setToCartBtn] = useState('To Cart');
   const formatPrice = props.price.toLocaleString();
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const HomeItems = props => {
     props.favorite
       ? setFavoriteHighlight('brown')
       : setFavoriteHighlight('black');
-    props.cart ? setToCartBtn('Uncart') : setToCartBtn('To Cart');
   }, [checkCartArrayChange]);
 
   const shareIcon = (
@@ -44,7 +42,7 @@ const HomeItems = props => {
         <View style={styles.titleView}>
           <Text style={styles.title}>{props.flavor}</Text>
           <Text style={styles.titleDets}>
-            Hot Fudge, Sprinkles, Caramel, Oreos, Cookie Dough, Whipped Cream...
+            {props.topping}
           </Text>
         </View>
         <View style={styles.actionsView}>
@@ -71,9 +69,7 @@ const HomeItems = props => {
           <Text style={{color: 'black', fontSize: 20}}>₦{formatPrice}</Text>
         </View>
         <TouchableOpacity onPress={props.addToCart} style={styles.addToCart}>
-          <Text style={{color: 'rgb(230,230,250)', fontSize: 20}}>
-            {toCartBtn}
-          </Text>
+          <Text style={{color: 'rgb(230,230,250)', fontSize: 20}}>To Cart</Text>
         </TouchableOpacity>
       </View>
     </View>
